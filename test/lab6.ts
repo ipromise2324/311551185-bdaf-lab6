@@ -44,6 +44,49 @@ describe("GetNFT", function () {
 
   });
 
+  it("should only allow owner to call setWealthyPrivateClubNFT function", async function () {
+    const newAddress = ethers.utils.getAddress("0x1234567890123456789012345678901234567890");
+  
+    // Try to call setWealthyPrivateClubNFT function with a non-owner address
+    await expect(getNFT.connect(ethers.provider.getSigner(1)).setWealthyPrivateClubNFT(newAddress))
+      .to.be.revertedWith("Ownable: caller is not the owner");
+  
+    // Call setWealthyPrivateClubNFT function with the owner address
+    await getNFT.connect(owner).setWealthyPrivateClubNFT(newAddress);
+  
+    // Check if the WealthyPrivateClubNFT address has been updated
+    expect(await getNFT.wealthyPrivateClubNFT()).to.equal(newAddress);
+  });
+
+  it("should only allow owner to call setBankWithFlashloan function", async function () {
+    const newAddress = ethers.utils.getAddress("0x1234567890123456789012345678901234567890");
+  
+    // Try to call setBankWithFlashloan function with a non-owner address
+    await expect(getNFT.connect(ethers.provider.getSigner(1)).setBankWithFlashloan(newAddress))
+      .to.be.revertedWith("Ownable: caller is not the owner");
+  
+    // Call setBankWithFlashloan function with the owner address
+    await getNFT.connect(owner).setBankWithFlashloan(newAddress);
+  
+    // Check if the BankWithFlashloan address has been updated
+    expect(await getNFT.bankWithFlashloan()).to.equal(newAddress);
+  });
+
+  it("should only allow owner to call setBankToken function", async function () {
+    const newAddress = ethers.utils.getAddress("0x1234567890123456789012345678901234567890");
+  
+    // Try to call setBankToken function with a non-owner address
+    await expect(getNFT.connect(ethers.provider.getSigner(1)).setBankToken(newAddress))
+      .to.be.revertedWith("Ownable: caller is not the owner");
+  
+    // Call setBankToken function with the owner address
+    await getNFT.connect(owner).setBankToken(newAddress);
+  
+    // Check if the BankToken address has been updated
+    expect(await getNFT.bankToken()).to.equal(newAddress);
+  });
+
+  
   it("should transfer NFT to owner", async function () {
     // Call getNFT function to initiate flashloan
     await getNFT.connect(owner).getNFT(ethers.utils.parseEther("1100000"));
@@ -79,5 +122,7 @@ describe("GetNFT", function () {
     // Check if NFT has been transferred to owner
     expect(await wealthyPrivateClubNFT.ownerOf(0)).to.equal(owner.address);
   });
+
+ 
 
 });

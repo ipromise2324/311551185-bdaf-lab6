@@ -4267,7 +4267,7 @@
     "semver" "^5.5.0"
     "tmp" "0.0.33"
 
-"solidity-coverage@^0.8.0", "solidity-coverage@^0.8.1":
+"solidity-coverage@^0.8.1", "solidity-coverage@^0.8.2":
   "integrity" "sha512-cv2bWb7lOXPE9/SSleDO6czkFiMHgP4NXPj+iW9W7iEKLBk7Cj0AGBiNmGX3V1totl9wjPrT0gHmABZKZt65rQ=="
   "resolved" "https://registry.npmjs.org/solidity-coverage/-/solidity-coverage-0.8.2.tgz"
   "version" "0.8.2"
